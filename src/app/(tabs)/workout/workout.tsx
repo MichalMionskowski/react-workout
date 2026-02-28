@@ -1,7 +1,7 @@
-import WorkoutScreen from "@/features/workout/WorkoutScreen";
+import WorkoutSelection from "@/features/workout/WorkoutSelection";
 
 const StartWorkout = () => {
-  return <WorkoutScreen />;
+  return <WorkoutSelection />;
 };
 
 export default StartWorkout;

@@ -8,7 +8,7 @@ export default function Index() {
     <Provider store={store}>
       <View style={styles.container}>
         <Text>Edit src/app/index.tsx to edit this screen.</Text>
-        <Link href="/(tabs)/workout"> HOME </Link>
+        <Link href="/(tabs)/workout/home"> HOME </Link>
       </View>
     </Provider>
   );
