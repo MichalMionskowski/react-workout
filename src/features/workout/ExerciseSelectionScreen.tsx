@@ -1,16 +1,29 @@
+import { addExercise, Exercise } from "@/state/workout/workout";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
-import { ScrollView } from "react-native";
+import { Pressable, ScrollView } from "react-native";
+import { useDispatch } from "react-redux";
 import ExerciseItem from "./components/ExerciseItem";
 import useWorkoutExercies from "./hooks/useWorkoutExercies";
 
 export default function ExerciseSelectionScreen() {
   const { bodyPart } = useLocalSearchParams<{ bodyPart: string }>();
   const exercises = useWorkoutExercies({ bodyPart });
+  const dispatch = useDispatch();
+  const onPressExercise = (exercise: Exercise) => {
+    dispatch(addExercise(exercise));
+  };
   return (
     <ScrollView>
-      {exercises.map((exercise) => (
-        <ExerciseItem key={exercise.name} exercise={exercise} />
+      {exercises?.data?.map((exercise) => (
+        <Pressable
+          key={exercise.name}
+          onPress={() => {
+            onPressExercise(exercise);
+          }}
+        >
+          <ExerciseItem exercise={exercise} />
+        </Pressable>
       ))}
     </ScrollView>
   );

@@ -1,20 +1,17 @@
-import React, { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 export default function useWorkoutBodyParts() {
-  const [bodyParts, setBodyParts] = React.useState<BodyPart[]>([]);
+  const fetchWorkoutBodyParts = async () => {
+    const response = await fetch("https://oss.exercisedb.dev/api/v1/bodyparts");
+    return response.json();
+  };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        "https://oss.exercisedb.dev/api/v1/bodyparts",
-      );
-      const { data }: WorkoutBodyPartResponse = await response.json();
-      setBodyParts(data);
-    };
-    fetchData();
-  }, []);
+  const { data, isLoading, error } = useQuery<WorkoutBodyPartResponse>({
+    queryKey: ["workoutBodyParts"],
+    queryFn: fetchWorkoutBodyParts,
+  });
 
-  return bodyParts;
+  return data;
 }
 
 export type BodyPart = {

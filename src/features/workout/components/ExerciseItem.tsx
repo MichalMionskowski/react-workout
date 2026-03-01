@@ -1,6 +1,6 @@
+import { Exercise } from "@/state/workout/workout";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { Exercise } from "../WorkoutScreen";
 
 type ExerciseItemProps = {
   exercise: Exercise;

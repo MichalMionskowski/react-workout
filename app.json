@@ -8,7 +8,8 @@
     "scheme": "workoutstracker",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.anonymous.workoutstracker"
     },
     "android": {
       "adaptiveIcon": {

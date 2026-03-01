@@ -1,14 +1,24 @@
-import { Exercise } from "@/features/workout/WorkoutScreen";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface WorkoutState {
   exercises: Exercise[];
-  date: Date;
+  date: string;
 }
+
+export type Exercise = {
+  exerciseId: string;
+  name: string;
+  gifUrl: string;
+  bodyParts: string[];
+  equipments: string[];
+  instructions: string[];
+  targetMuscles: string[];
+  secondaryMuscles: string[];
+};
 
 const initialState: WorkoutState = {
   exercises: [],
-  date: new Date(),
+  date: "",
 };
 
 const workoutSlice = createSlice({

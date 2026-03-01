@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Exercise } from "../WorkoutScreen";
+import { Exercise } from "@/state/workout/workout";
+import { useQuery } from "@tanstack/react-query";
 
 interface UserWorkoutExercisesProps {
   bodyPart: string;
@@ -8,20 +8,21 @@ interface UserWorkoutExercisesProps {
 export default function useWorkoutExercises({
   bodyPart,
 }: UserWorkoutExercisesProps) {
-  const [exercises, setExercises] = useState<Exercise[]>([]);
-  useEffect(() => {
-    const data = async () => {
-      const response = await fetch(
-        `https://oss.exercisedb.dev/api/v1/bodyparts/${bodyPart}/exercises`,
-      );
-      const json = await response.json();
-      const { data } = json;
-      console.log(data);
+  const fetchExercises = async () => {
+    const response = await fetch(
+      `https://oss.exercisedb.dev/api/v1/bodyparts/${bodyPart}/exercises`,
+    );
+    return response.json();
+  };
 
-      setExercises(data);
-    };
-    data();
-  }, []);
+  const { data, isLoading, error } = useQuery<WorkoutExercisesResponse>({
+    queryKey: ["workoutExercises", bodyPart],
+    queryFn: fetchExercises,
+  });
 
-  return exercises;
+  return data;
 }
+
+type WorkoutExercisesResponse = {
+  data: Exercise[];
+};

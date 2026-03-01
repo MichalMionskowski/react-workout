@@ -9,7 +9,7 @@ export default function WorkoutSelection() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.grid}>
-        {bodyParts.map((part) => {
+        {bodyParts?.data?.map((part) => {
           return (
             <BodyPart
               key={part.name}
