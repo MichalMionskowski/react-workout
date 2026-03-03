@@ -4,9 +4,11 @@ import { router } from "expo-router";
 import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { useSelector } from "react-redux";
+import WorkoutsList from "../workout/components/WorkoutsList";
 
-const HomeScreen = () => {
+const HomeScreen = ({}) => {
   const exercises = useSelector((state: RootState) => state.workout.exercises);
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.exercisesContainer}>
@@ -51,9 +53,11 @@ const HomeScreen = () => {
       </View>
       <View style={styles.buttonContainer}>
         <Button onPress={() => router.push("/workout/workout")}>
-          Start workout
+          Add exercise
         </Button>
+        <Button onPress={() => {}}>Finish workout</Button>
       </View>
+      <WorkoutsList />
     </ScrollView>
   );
 };
