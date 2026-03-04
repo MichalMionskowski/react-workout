@@ -12,7 +12,7 @@ export default function RootLayout() {
       persistOptions={{ persister: asyncStoragePersister }}
     >
       <SQLiteProvider databaseName="workout.db" onInit={dbMigration}>
-        <Stack>
+        <Stack initialRouteName="(tabs)">
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack>
       </SQLiteProvider>

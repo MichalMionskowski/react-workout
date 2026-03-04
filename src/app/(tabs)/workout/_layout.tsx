@@ -1,7 +1,7 @@
 import { Stack } from "expo-router";
 export default function RootLayout() {
   return (
-    <Stack>
+    <Stack initialRouteName="home">
       <Stack.Screen name="home" options={{ headerShown: false }} />
       <Stack.Screen name="workout" options={{ headerShown: false }} />
       <Stack.Screen name="[bodyPart]" options={{ headerShown: false }} />

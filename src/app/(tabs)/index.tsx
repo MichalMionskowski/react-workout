@@ -1,23 +1,5 @@
-import { store } from "@/state/store";
-import { Link } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
-import { Provider } from "react-redux";
+import { Redirect } from "expo-router";
 
 export default function Index() {
-  return (
-    <Provider store={store}>
-      <View style={styles.container}>
-        <Text>Edit src/app/index.tsx to edit this screen.</Text>
-        <Link href="/(tabs)/workout/home"> HOME </Link>
-      </View>
-    </Provider>
-  );
+  return <Redirect href="/(tabs)/workout/home" />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

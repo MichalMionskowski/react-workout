@@ -1,13 +1,58 @@
+import { createExercise, createWorkout } from "@/db/workoutRepository";
 import { RootState } from "@/state/store";
+import { clearExercises } from "@/state/workout/workout";
 import { Button, Text } from "@react-navigation/elements";
 import { router } from "expo-router";
 import React from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
-import { useSelector } from "react-redux";
+import { Alert, ScrollView, StyleSheet, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import WorkoutsList from "../workout/components/WorkoutsList";
 
 const HomeScreen = ({}) => {
   const exercises = useSelector((state: RootState) => state.workout.exercises);
+  const dispatch = useDispatch();
+  const [refreshKey, setRefreshKey] = React.useState(0);
+
+  const handleFinishWorkout = () => {
+    if (exercises.length === 0) {
+      Alert.alert(
+        "No exercises",
+        "Please add at least one exercise before finishing the workout.",
+      );
+      return;
+    }
+
+    try {
+      // Create workout wih current date or today's date
+      const workoutDate = new Date().toISOString();
+      const workoutId = createWorkout(workoutDate);
+
+      // Map and save each exercise
+      exercises.forEach((exercise) => {
+        createExercise({
+          workoutId,
+          name: exercise.name,
+          gifUrl: exercise.gifUrl,
+          bodyParts: exercise.bodyParts?.join(", ") || "",
+          equipments: exercise.equipments?.join(", ") || "",
+          instructions: exercise.instructions?.join(", ") || "",
+          targetMuscles: exercise.targetMuscles?.join(", ") || "",
+          secondaryMuscles: exercise.secondaryMuscles?.join(", ") || "",
+        });
+      });
+
+      // Clear exercises from Redux after successful save
+      dispatch(clearExercises());
+
+      // Trigger refresh of workouts list
+      setRefreshKey((prev) => prev + 1);
+
+      Alert.alert("Success", "Workout saved successfully!");
+    } catch (error) {
+      console.error("Error saving workout:", error);
+      Alert.alert("Error", "Failed to save workout. Please try again.");
+    }
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -55,9 +100,9 @@ const HomeScreen = ({}) => {
         <Button onPress={() => router.push("/workout/workout")}>
           Add exercise
         </Button>
-        <Button onPress={() => {}}>Finish workout</Button>
+        <Button onPress={handleFinishWorkout}>Finish workout</Button>
       </View>
-      <WorkoutsList />
+      <WorkoutsList refreshKey={refreshKey} />
     </ScrollView>
   );
 };

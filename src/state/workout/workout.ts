@@ -31,8 +31,12 @@ const workoutSlice = createSlice({
     addExercise(state, action) {
       state.exercises.push(action.payload);
     },
+    clearExercises(state) {
+      state.exercises = [];
+      state.date = "";
+    },
   },
 });
 
-export const { setDate, addExercise } = workoutSlice.actions;
+export const { setDate, addExercise, clearExercises } = workoutSlice.actions;
 export default workoutSlice.reducer;
