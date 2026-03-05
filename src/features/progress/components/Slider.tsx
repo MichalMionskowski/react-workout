@@ -1,3 +1,5 @@
+import { ColorFor } from "@/theme/types";
+import { useTheme } from "@/theme/useTheme";
 import React from "react";
 import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
@@ -59,6 +61,8 @@ export default function Slider({
   min = 0,
   max = 100,
 }: SliderProps) {
+  const { colorFor } = useTheme();
+  const styles = _styles(colorFor);
   const positionX = useSharedValue(value);
   const trackLength = useSharedValue(0);
   const minVal = useSharedValue(min);
@@ -126,27 +130,28 @@ export default function Slider({
   );
 }
 
-const styles = StyleSheet.create({
-  wrapper: {
-    width: "100%",
-    height: 24,
-    alignSelf: "center",
-    justifyContent: "center",
-  },
-  track: {
-    width: "100%",
-    height: 4,
-    backgroundColor: "#e0e0e0",
-    borderRadius: 2,
-  },
-  thumb: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: "#4CAF50",
-  },
-  thumbContainer: {
-    position: "absolute",
-    top: 0, // wrapper is 24px tall, thumb is 24px tall - fills wrapper = centered on 4px track
-  },
-});
+const _styles = (colorFor: ColorFor) =>
+  StyleSheet.create({
+    wrapper: {
+      width: "100%",
+      height: 24,
+      alignSelf: "center",
+      justifyContent: "center",
+    },
+    track: {
+      width: "100%",
+      height: 4,
+      backgroundColor: colorFor("sliderTrack"),
+      borderRadius: 2,
+    },
+    thumb: {
+      width: 24,
+      height: 24,
+      borderRadius: 12,
+      backgroundColor: colorFor("sliderThumb"),
+    },
+    thumbContainer: {
+      position: "absolute",
+      top: 0, // wrapper is 24px tall, thumb is 24px tall - fills wrapper = centered on 4px track
+    },
+  });

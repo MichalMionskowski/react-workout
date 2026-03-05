@@ -1,5 +1,6 @@
 import { dbMigration } from "@/db/database";
 import { asyncStoragePersister, queryClient } from "@/network/tanstackConfig";
+import { ThemeProvider } from "@/theme/ThemeProvider";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { Stack } from "expo-router";
 import { SQLiteProvider } from "expo-sqlite";
@@ -12,9 +13,11 @@ export default function RootLayout() {
       persistOptions={{ persister: asyncStoragePersister }}
     >
       <SQLiteProvider databaseName="workout.db" onInit={dbMigration}>
-        <Stack initialRouteName="(tabs)">
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
+        <ThemeProvider>
+          <Stack initialRouteName="(tabs)">
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+        </ThemeProvider>
       </SQLiteProvider>
     </PersistQueryClientProvider>
   );
