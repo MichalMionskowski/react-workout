@@ -19,7 +19,10 @@ export const theme: Record<ThemeKeys, string[]> = {
   inputText: [colors.light.primary, colors.dark.primary],
   inputIconLeft: [colors.light.primary, colors.dark.primary],
   inputIconRight: [colors.light.primary, colors.dark.primary],
-  sliderTrack: [colors.light.onPrimary, colors.dark.onPrimary],
+  sliderTrack: [
+    colors.light.onPrimaryContainer,
+    colors.dark.onPrimaryContainer,
+  ],
   sliderThumb: [
     colors.light.onPrimaryContainer,
     colors.dark.onPrimaryContainer,

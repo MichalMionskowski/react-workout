@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react";
+import { renderHook } from "@testing-library/react-native";
 import useBmiCalculate from "./useBmiCalculate";
 describe("when calculating bmi", () => {
   it("should calculate bmi correctly", () => {
