@@ -1,11 +1,11 @@
-import { ColorFor } from "@/theme/types";
-import { useTheme } from "@/theme/useTheme";
 import React, { useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
 import Animated, { useAnimatedStyle } from "react-native-reanimated";
+import { useTheme } from "../../theme/useTheme";
 import useInitSlider from "./hooks/useInitSlider";
 import useSliderGesture from "./hooks/useSliderGesture";
+import { getStyles } from "./SliderStyles";
 
 type SliderProps = {
   value: number;
@@ -15,6 +15,7 @@ type SliderProps = {
   max?: number;
 };
 
+// for now this will do, need to refactor this to maybe accept styles etc, also accessibility
 export default function Slider({
   value,
   onChange,
@@ -65,29 +66,3 @@ export default function Slider({
     </View>
   );
 }
-
-const getStyles = (colorFor: ColorFor) =>
-  StyleSheet.create({
-    wrapper: {
-      width: "100%",
-      height: 24,
-      alignSelf: "center",
-      justifyContent: "center",
-    },
-    track: {
-      width: "100%",
-      height: 4,
-      backgroundColor: colorFor("sliderTrack") + "40",
-      borderRadius: 2,
-    },
-    thumb: {
-      width: 24,
-      height: 24,
-      borderRadius: 12,
-      backgroundColor: colorFor("sliderThumb"),
-    },
-    thumbContainer: {
-      position: "absolute",
-      top: 0,
-    },
-  });

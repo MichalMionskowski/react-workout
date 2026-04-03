@@ -1,6 +1,6 @@
-import { useTheme } from "@/theme/useTheme";
 import React, { ReactElement } from "react";
 import { View } from "react-native";
+import { useTheme } from "../../theme/useTheme";
 import { styles } from "./CardStyles";
 
 interface Props {

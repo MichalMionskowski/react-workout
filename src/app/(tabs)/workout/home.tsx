@@ -1,4 +1,4 @@
-import HomeScreen from "@/features/home/HomeScreen";
+import HomeScreen from "../../../../features/home/HomeScreen";
 
 const HomePage = () => {
   return <HomeScreen />;

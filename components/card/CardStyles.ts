@@ -1,5 +1,5 @@
-import { ColorFor } from "@/theme/types";
 import { StyleSheet } from "react-native";
+import { ColorFor } from "../../theme/types";
 
 export const styles = (colorFor: ColorFor) =>
   StyleSheet.create({

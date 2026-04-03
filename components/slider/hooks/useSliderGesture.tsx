@@ -60,5 +60,5 @@ export default function useSliderGesture({
           maxVal,
         );
       });
-  }, []);
+  }, [position, trackLength, trackStart, minVal, maxVal, increment, onChange]);
 }

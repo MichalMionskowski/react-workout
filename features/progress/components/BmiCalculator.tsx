@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Card from "../../../../components/card/Card";
-import SliderContainer from "../../../../components/slider/SliderContainer";
+import Card from "../../../components/card/Card";
+import SliderContainer from "../../../components/slider/SliderContainer";
 import useBmiCalculate from "../hooks/useBmiCalculate";
 
 export default function BmiCalculator() {

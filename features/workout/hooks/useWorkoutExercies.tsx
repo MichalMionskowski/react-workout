@@ -1,5 +1,5 @@
-import { Exercise } from "@/state/workout/workout";
 import { useQuery } from "@tanstack/react-query";
+import { Exercise } from "../../../state/exercise/exercise";
 
 interface UserWorkoutExercisesProps {
   bodyPart: string;

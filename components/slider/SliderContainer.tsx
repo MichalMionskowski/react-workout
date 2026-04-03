@@ -1,6 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import Slider from "./Slider";
+import { styles } from "./SliderContainerStyles";
 
 interface SliderContainerProps {
   title: string;
@@ -11,6 +12,7 @@ interface SliderContainerProps {
   max?: number;
 }
 
+// this should definitely be a separate component not tightly coupled with Slider itself
 export default function SliderContainer({
   title,
   value,
@@ -35,24 +37,3 @@ export default function SliderContainer({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  sliderContainer: {
-    flexShrink: 1,
-    width: "80%",
-    flexDirection: "column",
-    justifyContent: "center",
-  },
-  text: {
-    fontSize: 14,
-    color: "#333",
-    fontWeight: "600",
-    marginBottom: 4,
-    textAlign: "center",
-  },
-  textContiainer: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-  },
-});

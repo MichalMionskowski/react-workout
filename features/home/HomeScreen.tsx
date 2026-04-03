@@ -1,18 +1,16 @@
-import { createExercise, createWorkout } from "@/db/workoutRepository";
-import { RootState } from "@/state/store";
-import { clearExercises } from "@/state/workout/workout";
 import { Button, Text } from "@react-navigation/elements";
 import { router } from "expo-router";
+import { observer } from "mobx-react-lite";
 import React from "react";
 import { Alert, ScrollView, StyleSheet, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { createExercise, createWorkout } from "../../db/workoutRepository";
+import exerciseStore from "../../state/exercise/exercise";
 import WorkoutsList from "../workout/components/WorkoutsList";
 
-const HomeScreen = ({}) => {
-  const exercises = useSelector((state: RootState) => state.workout.exercises);
-  const dispatch = useDispatch();
+const HomeScreen = observer(() => {
+  const store = exerciseStore;
+  const exercises = store.exerciseList;
   const [refreshKey, setRefreshKey] = React.useState(0);
-
   const handleFinishWorkout = () => {
     if (exercises.length === 0) {
       Alert.alert(
@@ -42,7 +40,7 @@ const HomeScreen = ({}) => {
       });
 
       // Clear exercises from Redux after successful save
-      dispatch(clearExercises());
+      store.clearExercises();
 
       // Trigger refresh of workouts list
       setRefreshKey((prev) => prev + 1);
@@ -105,7 +103,9 @@ const HomeScreen = ({}) => {
       <WorkoutsList refreshKey={refreshKey} />
     </ScrollView>
   );
-};
+});
+
+export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -239,5 +239,3 @@ const styles = StyleSheet.create({
     paddingBottom: 32,
   },
 });
-
-export default HomeScreen;

@@ -2,8 +2,8 @@ import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 // Static imports — required for SVG transformer to work
-import BackSvg from "../../../../assets/icons/body-parts/back.svg";
-import BicepsSvg from "../../../../assets/icons/body-parts/biceps.svg";
+import BackSvg from "../../../assets/icons/body-parts/back.svg";
+import BicepsSvg from "../../../assets/icons/body-parts/biceps.svg";
 
 interface BodyPartProps {
   name: string;

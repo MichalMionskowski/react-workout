@@ -1,6 +1,6 @@
-import { getAllWorkouts, Workout } from "@/db/workoutRepository";
 import React, { useEffect } from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { getAllWorkouts, Workout } from "../../../db/workoutRepository";
 
 interface WorkoutsListProps {
   refreshKey?: number;
